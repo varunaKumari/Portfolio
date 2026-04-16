@@ -11,35 +11,46 @@ import {
 
 export default function StatusBar() {
   return (
-    <div className="h-6 bg-[#007acc] flex items-center justify-between px-2 text-white text-[12px] select-none">
-      {/* Left */}
-      <div className="flex items-center gap-3">
-        <div className="flex items-center gap-1 hover:bg-[#1f8ad2] px-1 cursor-pointer">
+    <div
+      className="bg-[#007acc] flex items-center justify-between text-white select-none"
+      style={{ height: "22px", fontSize: "12px", lineHeight: "22px" }}
+    >
+      {/* Left side */}
+      <div className="flex items-center h-full">
+        {/* Branch */}
+        <div className="flex items-center gap-[6px] px-[8px] h-full hover:bg-[rgba(255,255,255,0.12)] cursor-pointer">
           <VscSourceControl size={14} />
           <span>main*</span>
         </div>
-        <div className="flex items-center gap-1 hover:bg-[#1f8ad2] px-1 cursor-pointer">
-          <VscSync size={12} />
+        {/* Sync */}
+        <div className="flex items-center px-[6px] h-full hover:bg-[rgba(255,255,255,0.12)] cursor-pointer">
+          <VscSync size={14} />
         </div>
-        <div className="flex items-center gap-2 hover:bg-[#1f8ad2] px-1 cursor-pointer">
-          <div className="flex items-center gap-1">
+        {/* Errors & Warnings */}
+        <div className="flex items-center gap-[8px] px-[8px] h-full hover:bg-[rgba(255,255,255,0.12)] cursor-pointer">
+          <span className="flex items-center gap-[3px]">
             <VscError size={14} />
             <span>0</span>
-          </div>
-          <div className="flex items-center gap-1">
+          </span>
+          <span className="flex items-center gap-[3px]">
             <VscWarning size={14} />
             <span>0</span>
-          </div>
+          </span>
         </div>
       </div>
 
-      {/* Right */}
-      <div className="flex items-center gap-3">
-        <span className="hover:bg-[#1f8ad2] px-1 cursor-pointer">Spaces: 2</span>
-        <span className="hover:bg-[#1f8ad2] px-1 cursor-pointer">UTF-8</span>
-        <span className="hover:bg-[#1f8ad2] px-1 cursor-pointer">CRLF</span>
-        <span className="hover:bg-[#1f8ad2] px-1 cursor-pointer">{"{ } TypeScript JSX"}</span>
-        <div className="flex items-center gap-1 hover:bg-[#1f8ad2] px-1 cursor-pointer">
+      {/* Right side */}
+      <div className="flex items-center h-full">
+        {["Spaces: 2", "UTF-8", "CRLF", "{ } TypeScript JSX"].map((item) => (
+          <div
+            key={item}
+            className="px-[8px] h-full hover:bg-[rgba(255,255,255,0.12)] cursor-pointer flex items-center"
+          >
+            {item}
+          </div>
+        ))}
+        {/* Go Live */}
+        <div className="flex items-center gap-[4px] px-[8px] h-full hover:bg-[rgba(255,255,255,0.12)] cursor-pointer">
           <VscBroadcast size={14} />
           <span>Go Live</span>
         </div>

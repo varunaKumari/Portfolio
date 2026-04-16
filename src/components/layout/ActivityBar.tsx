@@ -20,60 +20,64 @@ export default function ActivityBar({ sidebarOpen, onToggleSidebar }: Props) {
   const [activeIcon, setActiveIcon] = useState(0);
 
   const topIcons = [
-    { icon: VscFiles, label: "Explorer" },
-    { icon: VscSearch, label: "Search" },
-    { icon: VscSourceControl, label: "Source Control" },
-    { icon: VscDebugAlt, label: "Run and Debug" },
-    { icon: VscExtensions, label: "Extensions" },
+    { Icon: VscFiles, label: "Explorer" },
+    { Icon: VscSearch, label: "Search" },
+    { Icon: VscSourceControl, label: "Source Control" },
+    { Icon: VscDebugAlt, label: "Run and Debug" },
+    { Icon: VscExtensions, label: "Extensions" },
   ];
 
   const bottomIcons = [
-    { icon: VscAccount, label: "Accounts" },
-    { icon: VscSettingsGear, label: "Settings" },
+    { Icon: VscAccount, label: "Accounts" },
+    { Icon: VscSettingsGear, label: "Manage" },
   ];
 
   return (
-    <div className="w-12 bg-[#2c2c2c] flex flex-col justify-between items-center py-1 border-r border-[#2b2b2b]">
+    <div
+      className="bg-[#333333] flex flex-col justify-between items-center border-r border-[#222]"
+      style={{ width: "48px", minWidth: "48px" }}
+    >
       {/* Top Icons */}
-      <div className="flex flex-col items-center w-full">
-        {topIcons.map((item, index) => {
-          const Icon = item.icon;
-          const isActive = index === activeIcon;
+      <div className="flex flex-col w-full">
+        {topIcons.map(({ Icon, label }, index) => {
+          const isActive = activeIcon === index;
           return (
-            <div key={index} className="tooltip-container w-full">
+            <div key={label} className="relative group">
               <button
-                className={`w-full h-12 flex items-center justify-center relative
-                  ${isActive ? "text-white" : "text-[#858585] hover:text-white"}
-                `}
+                className={`w-full flex items-center justify-center transition-colors ${
+                  isActive
+                    ? "text-white"
+                    : "text-[#858585] hover:text-white"
+                }`}
+                style={{ height: "48px" }}
                 onClick={() => {
                   setActiveIcon(index);
                   if (index === 0) onToggleSidebar();
                 }}
+                title={label}
               >
                 {isActive && (
                   <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-white" />
                 )}
                 <Icon size={24} />
               </button>
-              <span className="tooltip">{item.label}</span>
             </div>
           );
         })}
       </div>
 
       {/* Bottom Icons */}
-      <div className="flex flex-col items-center w-full">
-        {bottomIcons.map((item, index) => {
-          const Icon = item.icon;
-          return (
-            <div key={index} className="tooltip-container w-full">
-              <button className="w-full h-12 flex items-center justify-center text-[#858585] hover:text-white">
-                <Icon size={24} />
-              </button>
-              <span className="tooltip">{item.label}</span>
-            </div>
-          );
-        })}
+      <div className="flex flex-col w-full">
+        {bottomIcons.map(({ Icon, label }) => (
+          <button
+            key={label}
+            className="w-full flex items-center justify-center text-[#858585] hover:text-white transition-colors"
+            style={{ height: "48px" }}
+            title={label}
+          >
+            <Icon size={24} />
+          </button>
+        ))}
       </div>
     </div>
   );

@@ -23,23 +23,21 @@ export default function VSCodeLayout() {
 
   const scrollToSection = (id: string) => {
     setActiveSection(id);
-    const element = document.getElementById(id);
-    if (element && editorRef.current) {
+    const el = document.getElementById(id);
+    if (el && editorRef.current) {
       const container = editorRef.current;
-      const elementTop = element.offsetTop - container.offsetTop;
-      container.scrollTo({
-        top: elementTop - 20,
-        behavior: "smooth",
-      });
+      const top = el.offsetTop - container.offsetTop;
+      container.scrollTo({ top: top - 20, behavior: "smooth" });
     }
   };
 
+  // Track scroll position to highlight active sidebar item
   useEffect(() => {
     const container = editorRef.current;
     if (!container) return;
 
-    const handleScroll = () => {
-      const sections = [
+    const onScroll = () => {
+      const ids = [
         "about-me",
         "work-experience",
         "skills",
@@ -48,36 +46,40 @@ export default function VSCodeLayout() {
         "contact-me",
         "explore-more",
       ];
+      const containerTop = container.getBoundingClientRect().top;
 
-      for (const sectionId of sections) {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          const containerRect = container.getBoundingClientRect();
-          if (rect.top >= containerRect.top && rect.top < containerRect.top + 300) {
-            setActiveSection(sectionId);
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top >= containerTop && rect.top < containerTop + 400) {
+            setActiveSection(id);
             break;
           }
         }
       }
     };
 
-    container.addEventListener("scroll", handleScroll);
-    return () => container.removeEventListener("scroll", handleScroll);
+    container.addEventListener("scroll", onScroll);
+    return () => container.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
-    <div className="h-screen w-screen flex flex-col overflow-hidden bg-vscode-bg">
+    <div className="h-screen w-screen flex flex-col overflow-hidden bg-[#1e1e1e]">
       {/* Title Bar */}
       <TitleBar />
 
       {/* Menu Bar */}
-      <div className="h-8 bg-[#3c3c3c] flex items-center px-2 text-sm text-vscode-text border-b border-[#2b2b2b]">
+      <div
+        className="bg-[#3c3c3c] flex items-center px-[4px] border-b border-[#2b2b2b]"
+        style={{ height: "30px", minHeight: "30px" }}
+      >
         {["File", "Edit", "Selection", "View", "Go", "Run", "Terminal", "Help"].map(
           (item) => (
             <button
               key={item}
-              className="px-2 py-1 hover:bg-[#505050] rounded text-[13px]"
+              className="px-[7px] py-[2px] text-[#cccccc] hover:bg-[rgba(255,255,255,0.1)] rounded-[3px]"
+              style={{ fontSize: "13px" }}
             >
               {item}
             </button>
@@ -85,7 +87,7 @@ export default function VSCodeLayout() {
         )}
       </div>
 
-      {/* Main Content */}
+      {/* Main Area */}
       <div className="flex flex-1 overflow-hidden">
         {/* Activity Bar */}
         <ActivityBar
@@ -93,25 +95,22 @@ export default function VSCodeLayout() {
           onToggleSidebar={() => setSidebarOpen(!sidebarOpen)}
         />
 
-        {/* Sidebar / Explorer */}
+        {/* Sidebar */}
         {sidebarOpen && (
-          <Sidebar
-            activeSection={activeSection}
-            onNavigate={scrollToSection}
-          />
+          <Sidebar activeSection={activeSection} onNavigate={scrollToSection} />
         )}
 
-        {/* Editor Area */}
-        <div className="flex-1 flex flex-col overflow-hidden">
-          {/* Tabs */}
+        {/* Editor */}
+        <div className="flex-1 flex flex-col overflow-hidden min-w-0">
+          {/* Tab Bar */}
           <TabBar />
 
           {/* Editor Content */}
           <div
             ref={editorRef}
-            className="flex-1 overflow-y-auto editor-scroll bg-vscode-editor"
+            className="flex-1 overflow-y-auto editor-area bg-[#1e1e1e]"
           >
-            <div className="max-w-5xl mx-auto px-8 py-4">
+            <div className="max-w-[1000px] mx-auto px-[40px] pb-[100px]">
               <div id="about-me">
                 <HeroSection />
                 <AboutSection />

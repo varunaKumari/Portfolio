@@ -2,45 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
+/* Reset everything */
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-body {
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
   background-color: #1e1e1e;
   color: #cccccc;
-  font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", system-ui, Ubuntu, "Droid Sans", sans-serif;
+  font-size: 13px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom Scrollbar */
+/* VS Code exact scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 14px;
+  height: 14px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #1e1e1e;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #424242;
-  border-radius: 0;
+  background: rgba(121, 121, 121, 0.4);
+  min-height: 40px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #4f4f4f;
+  background: rgba(100, 100, 100, 0.7);
 }
 
-/* Sidebar scrollbar */
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Sidebar thin scrollbar */
 .sidebar-scroll::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
 
 .sidebar-scroll::-webkit-scrollbar-thumb {
@@ -48,138 +54,89 @@ body {
 }
 
 .sidebar-scroll:hover::-webkit-scrollbar-thumb {
-  background: #424242;
+  background: rgba(121, 121, 121, 0.4);
 }
 
-/* Editor scrollbar */
-.editor-scroll::-webkit-scrollbar {
+/* Editor scroll area */
+.editor-area::-webkit-scrollbar {
   width: 14px;
 }
 
-.editor-scroll::-webkit-scrollbar-thumb {
-  background: #424242;
-  border: 3px solid #1e1e1e;
+.editor-area::-webkit-scrollbar-thumb {
+  background: rgba(121, 121, 121, 0.4);
+  border: 3px solid transparent;
+  background-clip: padding-box;
 }
 
-/* Selection highlight */
+/* Selection */
 ::selection {
   background: #264f78;
   color: #ffffff;
 }
 
-/* Animations */
+/* Smooth scroll for editor */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Cursor blink animation */
 @keyframes blink {
   0%, 50% { opacity: 1; }
   51%, 100% { opacity: 0; }
 }
 
-.cursor-blink {
-  animation: blink 1s infinite;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.fade-in-up {
-  animation: fadeInUp 0.6s ease-out;
-}
-
-@keyframes scrollIndicator {
+/* Scroll indicator bounce */
+@keyframes bounce {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(10px); }
+  50% { transform: translateY(8px); }
 }
 
-.scroll-indicator {
-  animation: scrollIndicator 2s ease-in-out infinite;
+.scroll-bounce {
+  animation: bounce 2s ease-in-out infinite;
 }
 
-/* Code block styling */
-.code-block {
-  background: #1e1e1e;
-  border: 1px solid #333;
-  border-radius: 8px;
-  overflow: hidden;
+/* Fade in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.code-block-header {
-  background: #2d2d2d;
-  padding: 8px 16px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  border-bottom: 1px solid #333;
+.fade-in {
+  animation: fadeIn 0.8s ease-out;
 }
 
-.code-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-}
-
-/* Active sidebar item */
-.sidebar-item-active {
-  color: #ffffff;
-  background: #37373d;
-}
-
-/* Glow effect for project cards */
+/* Project card hover */
 .project-card {
-  transition: all 0.3s ease;
-  border: 1px solid #333;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .project-card:hover {
-  border-color: #007acc;
-  box-shadow: 0 0 20px rgba(0, 122, 204, 0.1);
+  border-color: rgba(0, 122, 204, 0.5);
+  box-shadow: 0 0 30px rgba(0, 122, 204, 0.08);
 }
 
-/* Blockquote styling */
-.blockquote-accent {
-  border-left: 3px solid #007acc;
-  padding-left: 16px;
-  font-style: italic;
-  color: #858585;
-}
-
-/* Tag/Badge styling */
-.tech-tag {
-  padding: 4px 12px;
-  border-radius: 16px;
-  font-size: 0.85rem;
+/* Tech badge */
+.tech-badge {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 20px;
+  font-size: 12px;
   border: 1px solid #e5a000;
   color: #e5a000;
+  line-height: 1.6;
 }
 
-/* Tooltip */
-.tooltip-container {
-  position: relative;
+/* Blockquote */
+.vscode-blockquote {
+  border-left: 3px solid #007acc;
+  padding-left: 16px;
+  margin-left: 0;
 }
 
-.tooltip-container:hover .tooltip {
-  opacity: 1;
-  visibility: visible;
-}
-
-.tooltip {
-  position: absolute;
-  bottom: -30px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #252526;
-  border: 1px solid #474747;
-  padding: 4px 8px;
-  font-size: 12px;
-  white-space: nowrap;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.2s ease;
-  z-index: 100;
+/* Code block */
+.code-window {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #333333;
+  background: #1e1e1e;
 }
