@@ -3,81 +3,133 @@
 import React from "react";
 import { skillCategories } from "@/data/portfolio";
 
-// Map of skill icons - you can replace these with actual image URLs
 const skillIconMap: Record<string, string> = {
-  js: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
-  ts: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
-  python: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
-  java: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
-  cpp: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg",
-  html: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
-  css: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
-  react: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-  nextjs: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
-  redux: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg",
-  tailwind: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
-  nodejs: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
-  express: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
-  postgresql: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
-  redis: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg",
-  mongodb: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
-  springboot: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg",
-  langchain: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
-  langgraph: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
-  github: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
-  docker: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+  python:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg",
+  java: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg",
+  js: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
+  ts: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
+  sql: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuresqldatabase/azuresqldatabase-original.svg",
+  react:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
+  nextjs:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg",
+  html: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg",
+  css: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg",
+  nodejs:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg",
+  express:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg",
+  fastapi:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg",
+  graphql:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/graphql/graphql-plain.svg",
+  postgresql:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg",
+  mongodb:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg",
+  selenium:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/selenium/selenium-original.svg",
+  cypress:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cypressio/cypressio-original.svg",
+  postman:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg",
+  git: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg",
+  github:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg",
+  docker:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg",
+  jenkins:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jenkins/jenkins-original.svg",
+  vscode:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg",
+  jira: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jira/jira-original.svg",
+  prometheus:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/prometheus/prometheus-original.svg",
+  grafana:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/grafana/grafana-original.svg",
+  githubactions:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/githubactions/githubactions-original.svg",
 };
 
 export default function SkillsSection() {
   return (
-    <section className="py-16">
+    <section style={{ paddingTop: "60px", paddingBottom: "60px" }}>
       {/* Headline */}
-      <h2 className="text-4xl md:text-5xl font-bold mb-12 leading-tight">
-        <span className="text-[#e5a000]">Full Stack</span> Developer also
-        experience in{" "}
+      <h2
+        className="font-bold leading-tight"
+        style={{ fontSize: "clamp(28px, 4vw, 44px)", marginBottom: "48px" }}
+      >
+        <span className="text-[#e5a000]">Full Stack</span> Developer with
+        expertise in Testing, AI &{" "}
         <span className="text-[#4fc1ff]">Competitive Programming</span>
       </h2>
 
       {/* Skill Categories */}
       {skillCategories.map((category, catIndex) => (
-        <div key={catIndex} className="mb-8">
-          <h3 className="text-2xl font-bold text-white mb-4">
+        <div key={catIndex} style={{ marginBottom: "32px" }}>
+          <h3
+            className="text-white font-bold"
+            style={{ fontSize: "20px", marginBottom: "16px" }}
+          >
             {category.title}
           </h3>
-          <div className="flex flex-wrap gap-6">
-            {category.skills.map((skill, skillIndex) => (
-              <div
-                key={skillIndex}
-                className="flex flex-col items-center gap-2 w-24"
-              >
-                <div className="w-16 h-16 flex items-center justify-center bg-[#2a2a2a] rounded-lg hover:bg-[#333] transition-colors p-2">
-                  <img
-                    src={skillIconMap[skill.icon] || ""}
-                    alt={skill.name}
-                    className="w-12 h-12 object-contain"
-                    onError={(e) => {
-                      // Fallback if image fails to load
-                      const target = e.target as HTMLImageElement;
-                      target.style.display = "none";
-                      target.parentElement!.innerHTML = `
-                        <span class="text-2xl text-[#858585]">📦</span>
-                      `;
-                    }}
-                  />
+          <div className="flex flex-wrap" style={{ gap: "20px" }}>
+            {category.skills.map((skill, skillIndex) => {
+              const iconUrl = skillIconMap[skill.icon];
+              return (
+                <div
+                  key={skillIndex}
+                  className="flex flex-col items-center"
+                  style={{ width: "88px", gap: "8px" }}
+                >
+                  <div
+                    className="flex items-center justify-center bg-[#2a2a2a] rounded-lg hover:bg-[#333] transition-colors"
+                    style={{ width: "60px", height: "60px", padding: "8px" }}
+                  >
+                    {iconUrl ? (
+                      <img
+                        src={iconUrl}
+                        alt={skill.name}
+                        style={{
+                          width: "40px",
+                          height: "40px",
+                          objectFit: "contain",
+                        }}
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = "none";
+                          if (target.parentElement) {
+                            target.parentElement.innerHTML = `<span style="font-size:24px;color:#858585;">⚡</span>`;
+                          }
+                        }}
+                      />
+                    ) : (
+                      <span style={{ fontSize: "24px", color: "#858585" }}>
+                        ⚡
+                      </span>
+                    )}
+                  </div>
+                  <span
+                    className="text-[#cccccc] text-center"
+                    style={{ fontSize: "11px", lineHeight: 1.3 }}
+                  >
+                    {skill.name}
+                  </span>
                 </div>
-                <span className="text-xs text-center text-vscode-text">
-                  {skill.name}
-                </span>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       ))}
 
       {/* Divider */}
-      <div className="mt-12 flex items-center gap-4">
-        <div className="w-8 h-[2px] bg-[#858585]" />
-        <div className="flex-1 h-[1px] bg-[#333]" />
+      <div
+        className="flex items-center"
+        style={{ marginTop: "48px", gap: "16px" }}
+      >
+        <div style={{ width: "32px", height: "2px", background: "#858585" }} />
+        <div style={{ flex: 1, height: "1px", background: "#333" }} />
       </div>
     </section>
   );

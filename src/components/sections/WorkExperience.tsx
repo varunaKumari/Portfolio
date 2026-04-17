@@ -1,64 +1,95 @@
 "use client";
 
 import React from "react";
-import { workExperience } from "@/data/portfolio";
 
 export default function WorkExperience() {
   return (
-    <section className="py-16">
+    <section style={{ paddingTop: "60px", paddingBottom: "60px" }}>
       {/* Headline */}
-      <h2 className="text-4xl md:text-5xl font-bold mb-12 leading-tight">
-        <span className="text-[#e5a000]">2 Months</span> of experience (Intern)
-        in the software industry
+      <h2
+        className="font-bold leading-tight text-white"
+        style={{ fontSize: "clamp(28px, 4vw, 44px)", marginBottom: "48px" }}
+      >
+        <span className="text-[#e5a000]">Work</span> Experience
       </h2>
 
-      {/* Experience Cards */}
-      {workExperience.map((exp, index) => (
-        <div key={index} className="mb-12">
-          {/* Company Header */}
-          <div className="flex items-center gap-4 mb-6">
-            <div className="w-20 h-20 bg-white rounded-lg flex items-center justify-center overflow-hidden">
-              <img
-                src={exp.logo}
-                alt={exp.company}
-                className="w-full h-full object-contain p-2"
-              />
-            </div>
-            <div>
-              <h3 className="text-xl font-bold text-[#e5a000]">
-                {exp.company} | {exp.role}
-              </h3>
-              <p className="text-[#858585]">{exp.period}</p>
-            </div>
+      {/* Empty State */}
+      <div
+        className="flex flex-col items-center justify-center text-center"
+        style={{
+          padding: "80px 40px",
+          border: "1px dashed #444",
+          borderRadius: "12px",
+          background: "#252526",
+        }}
+      >
+        {/* Icon */}
+        <div
+          className="flex items-center justify-center rounded-full bg-[#1e1e1e] border border-[#444]"
+          style={{ width: "80px", height: "80px", marginBottom: "24px" }}
+        >
+          <span style={{ fontSize: "36px" }}>🚀</span>
+        </div>
+
+        <h3
+          className="text-white font-bold"
+          style={{ fontSize: "22px", marginBottom: "12px" }}
+        >
+          Currently a Student
+        </h3>
+
+        <p
+          className="text-[#858585] max-w-md"
+          style={{ fontSize: "14px", lineHeight: 1.7, marginBottom: "24px" }}
+        >
+          I&apos;m currently pursuing my B.Tech at IIIT Raichur and actively
+          looking for internship opportunities. I&apos;m passionate about
+          full-stack development, AI, and building real-world projects.
+        </p>
+
+        <div className="flex items-center" style={{ gap: "8px" }}>
+          <div
+            className="rounded-full bg-[#4ec9b0]"
+            style={{ width: "8px", height: "8px" }}
+          />
+          <span className="text-[#4ec9b0]" style={{ fontSize: "13px" }}>
+            Open for Internships & Collaborations
+          </span>
+        </div>
+
+        {/* Code snippet */}
+        <div
+          className="font-mono text-left w-full max-w-sm"
+          style={{
+            marginTop: "32px",
+            padding: "16px",
+            background: "#1e1e1e",
+            borderRadius: "8px",
+            border: "1px solid #333",
+            fontSize: "12px",
+          }}
+        >
+          <div>
+            <span className="text-[#c586c0]">const</span>{" "}
+            <span className="text-[#9cdcfe]">status</span>{" "}
+            <span className="text-white">=</span>{" "}
+            <span className="text-[#ce9178]">&quot;seeking_internship&quot;</span>
+            <span className="text-white">;</span>
           </div>
-
-          {/* Responsibilities */}
-          <ul className="space-y-4 mb-6">
-            {exp.responsibilities.map((resp, i) => (
-              <li key={i} className="ml-4">
-                <div className="flex items-start gap-2">
-                  <span className="text-white mt-1.5 text-xs">•</span>
-                  <div>
-                    <p className="text-vscode-text">{resp.task}</p>
-                    <p className="text-[#858585] italic text-sm mt-1">
-                      Impact: {resp.impact}
-                    </p>
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ul>
-
-          {/* Tech Stack Tags */}
-          <div className="flex flex-wrap gap-2">
-            {exp.techStack.map((tech) => (
-              <span key={tech} className="tech-tag">
-                {tech}
-              </span>
-            ))}
+          <div>
+            <span className="text-[#c586c0]">const</span>{" "}
+            <span className="text-[#9cdcfe]">passion</span>{" "}
+            <span className="text-white">=</span>{" "}
+            <span className="text-[#ce9178]">&quot;building_cool_stuff&quot;</span>
+            <span className="text-white">;</span>
+          </div>
+          <div style={{ marginTop: "8px" }}>
+            <span className="text-[#6a9955]">
+              {"// Will update this section soon! 🎯"}
+            </span>
           </div>
         </div>
-      ))}
+      </div>
     </section>
   );
 }

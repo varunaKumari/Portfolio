@@ -14,7 +14,6 @@ export default function ContactSection() {
         now.toLocaleTimeString("en-US", {
           hour: "2-digit",
           minute: "2-digit",
-          second: undefined,
           hour12: true,
           timeZone: "Asia/Kolkata",
         })
@@ -26,80 +25,149 @@ export default function ContactSection() {
   }, []);
 
   return (
-    <section className="py-16">
+    <section style={{ paddingTop: "60px", paddingBottom: "60px" }}>
       {/* Headline */}
-      <h2 className="text-4xl md:text-5xl font-bold mb-12 leading-tight">
+      <h2
+        className="font-bold leading-tight"
+        style={{ fontSize: "clamp(28px, 4vw, 44px)", marginBottom: "48px" }}
+      >
         Let&apos;s <span className="text-[#4fc1ff]">talk</span> and{" "}
         <span className="text-[#4fc1ff]">work together</span>
       </h2>
 
       {/* Collaborate Section */}
-      <div className="mb-12">
-        <h3 className="text-2xl font-bold mb-3">
+      <div style={{ marginBottom: "48px" }}>
+        <h3
+          className="font-bold"
+          style={{ fontSize: "22px", marginBottom: "12px" }}
+        >
           Let&apos;s <span className="text-[#4ec9b0]">Collaborate</span>
         </h3>
-        <p className="text-[#858585] max-w-2xl leading-relaxed">
-          I am currently available for freelance projects and open-source
-          contributions. If you have a technical challenge or a product vision,
-          let&apos;s discuss how we can execute it.
+        <p
+          className="text-[#858585]"
+          style={{
+            fontSize: "14px",
+            lineHeight: 1.7,
+            maxWidth: "600px",
+          }}
+        >
+          I am currently a student at IIIT Raichur, actively looking for
+          internship opportunities and open-source collaborations. If you have a
+          technical challenge or a product vision, let&apos;s discuss how we can
+          execute it.
         </p>
       </div>
 
       {/* Contact Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div
+        className="grid grid-cols-1 md:grid-cols-2"
+        style={{ gap: "32px" }}
+      >
         {/* Left Column */}
-        <div className="space-y-6">
+        <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
           {/* Status */}
-          <div className="flex items-center gap-3 px-4 py-3 bg-[#252526] rounded-lg border border-[#333]">
-            <div className="w-3 h-3 rounded-full bg-green-500" />
-            <span className="text-white">Open for Opportunities</span>
+          <div
+            className="flex items-center bg-[#252526] rounded-lg border border-[#333]"
+            style={{ gap: "12px", padding: "12px 16px" }}
+          >
+            <div
+              className="rounded-full bg-green-500"
+              style={{ width: "10px", height: "10px" }}
+            />
+            <span className="text-white" style={{ fontSize: "14px" }}>
+              Open for Internships & Opportunities
+            </span>
           </div>
 
           {/* Location */}
           <div>
-            <p className="text-[10px] tracking-widest text-[#858585] uppercase mb-1">
+            <p
+              className="text-[#858585] uppercase"
+              style={{
+                fontSize: "10px",
+                letterSpacing: "1.5px",
+                marginBottom: "4px",
+              }}
+            >
               Base of Operations
             </p>
-            <p className="text-white font-semibold">{personalInfo.location}</p>
+            <p className="text-white font-semibold" style={{ fontSize: "14px" }}>
+              {personalInfo.location}
+            </p>
           </div>
 
           {/* Local Time */}
           <div>
-            <p className="text-[10px] tracking-widest text-[#858585] uppercase mb-1">
+            <p
+              className="text-[#858585] uppercase"
+              style={{
+                fontSize: "10px",
+                letterSpacing: "1.5px",
+                marginBottom: "4px",
+              }}
+            >
               Local Time ({personalInfo.timezone})
             </p>
-            <p className="text-white font-mono font-semibold text-lg">
+            <p
+              className="text-white font-mono font-semibold"
+              style={{ fontSize: "18px" }}
+            >
               {currentTime}
             </p>
           </div>
         </div>
 
         {/* Right Column */}
-        <div className="bg-[#252526] rounded-lg border border-[#333] p-6 space-y-6">
+        <div
+          className="bg-[#252526] rounded-lg border border-[#333]"
+          style={{
+            padding: "24px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "24px",
+          }}
+        >
           {/* Primary Contact */}
           <div>
-            <p className="text-[10px] tracking-widest text-[#858585] uppercase mb-3">
+            <p
+              className="text-[#858585] uppercase"
+              style={{
+                fontSize: "10px",
+                letterSpacing: "1.5px",
+                marginBottom: "12px",
+              }}
+            >
               Primary Contact
             </p>
             <a
               href={`mailto:${personalInfo.email}`}
-              className="flex items-center justify-between px-4 py-3 bg-[#1e1e1e] rounded-lg hover:bg-[#2a2a2a] transition-colors"
+              className="flex items-center justify-between bg-[#1e1e1e] rounded-lg hover:bg-[#2a2a2a] transition-colors"
+              style={{ padding: "12px 16px" }}
             >
-              <span className="text-white">{personalInfo.email}</span>
+              <span className="text-white" style={{ fontSize: "14px" }}>
+                {personalInfo.email}
+              </span>
               <span className="text-[#858585]">↗</span>
             </a>
           </div>
 
           {/* Social Links */}
-          <div className="grid grid-cols-3 gap-3">
+          <div
+            className="grid grid-cols-3"
+            style={{ gap: "12px" }}
+          >
             <a
               href={socialLinks.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-col items-center gap-2 py-4 bg-[#1e1e1e] rounded-lg hover:bg-[#2a2a2a] transition-colors"
+              className="flex flex-col items-center bg-[#1e1e1e] rounded-lg hover:bg-[#2a2a2a] transition-colors"
+              style={{ gap: "8px", padding: "16px 0" }}
             >
-              <FaLinkedinIn size={20} className="text-white" />
-              <span className="text-[11px] text-[#858585] uppercase tracking-wide">
+              <FaLinkedinIn size={18} className="text-white" />
+              <span
+                className="text-[#858585] uppercase"
+                style={{ fontSize: "10px", letterSpacing: "1px" }}
+              >
                 LinkedIn
               </span>
             </a>
@@ -107,19 +175,27 @@ export default function ContactSection() {
               href={socialLinks.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-col items-center gap-2 py-4 bg-[#1e1e1e] rounded-lg hover:bg-[#2a2a2a] transition-colors"
+              className="flex flex-col items-center bg-[#1e1e1e] rounded-lg hover:bg-[#2a2a2a] transition-colors"
+              style={{ gap: "8px", padding: "16px 0" }}
             >
-              <FaGithub size={20} className="text-white" />
-              <span className="text-[11px] text-[#858585] uppercase tracking-wide">
+              <FaGithub size={18} className="text-white" />
+              <span
+                className="text-[#858585] uppercase"
+                style={{ fontSize: "10px", letterSpacing: "1px" }}
+              >
                 GitHub
               </span>
             </a>
             <a
               href={socialLinks.resume}
-              className="flex flex-col items-center gap-2 py-4 bg-[#1e1e1e] rounded-lg hover:bg-[#2a2a2a] transition-colors"
+              className="flex flex-col items-center bg-[#1e1e1e] rounded-lg hover:bg-[#2a2a2a] transition-colors"
+              style={{ gap: "8px", padding: "16px 0" }}
             >
-              <FaDownload size={20} className="text-white" />
-              <span className="text-[11px] text-[#858585] uppercase tracking-wide">
+              <FaDownload size={18} className="text-white" />
+              <span
+                className="text-[#858585] uppercase"
+                style={{ fontSize: "10px", letterSpacing: "1px" }}
+              >
                 Resume
               </span>
             </a>
